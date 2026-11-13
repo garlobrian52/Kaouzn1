@@ -1,3 +1,6 @@
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+
 type PaymentRail = "crossmint" | "agent-wallet";
 
 const config = {
@@ -21,7 +24,9 @@ const config = {
   eyebrow: string; title: string; description: string; railName: string; route: string; safeguards: string[];
 }>;
 
-export function PaymentApprovalScreen({ rail }: { rail: PaymentRail }) {
+export async function PaymentApprovalScreen({ rail }: { rail: PaymentRail }) {
+  const { userId } = await auth();
+  if (!userId) redirect("/sign-in");
   const item = config[rail];
   return (
     <main className="wrap approval-wrap">
