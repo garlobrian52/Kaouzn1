@@ -19,6 +19,7 @@ export type WithdrawalRequest = {
   rail: WithdrawalRail;
   destinationId: string;
   destinationOwnedAndVerified: boolean;
+  assetNetworkAllowlisted: boolean;
   asset: string;
   network: string | null;
   amountBaseUnits: string;
@@ -39,7 +40,7 @@ export type WithdrawalPolicyResult =
   | { allowed: false; reason: string };
 
 function positiveUnits(value: string): bigint | null {
-  if (!/^[1-9]\\d*$/.test(value)) return null;
+  if (!/^[1-9]\d*$/.test(value)) return null;
   try {
     return BigInt(value);
   } catch {
@@ -73,6 +74,9 @@ export function checkWithdrawalPreflight(
   }
   if (!request.destinationOwnedAndVerified) {
     return { allowed: false, reason: "destination_not_verified_for_user" };
+  }
+  if (!request.assetNetworkAllowlisted) {
+    return { allowed: false, reason: "asset_or_network_not_allowlisted" };
   }
   if (!limits.enabled) return { allowed: false, reason: "withdrawal_rail_disabled" };
   if (!perWithdrawalCap || !dailyCap || !monthlyCap) {
