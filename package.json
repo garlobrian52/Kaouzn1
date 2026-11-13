@@ -15,7 +15,8 @@
     "ai": "latest",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "@clerk/nextjs": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",
@@ -23,4 +24,4 @@
     "@types/react-dom": "latest",
     "typescript": "latest"
   }
-}
+}\n
