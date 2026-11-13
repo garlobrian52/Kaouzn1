@@ -42,7 +42,10 @@ export default function Home() {
       <div className="wrap">
         <nav className="nav">
           <div className="brand">AI Revenue <span>OS</span></div>
-          <div className="pill">Target: $50K/mo</div>
+          <div className="nav-right">
+            <div className="pill">Target: $50K/mo</div>
+            <div className="nav-auth"><a href="/sign-in">Sign in</a><a href="/sign-up">Create account</a></div>
+          </div>
         </nav>
 
         <section className="hero">
