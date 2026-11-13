@@ -52,3 +52,14 @@ Both screens are intentionally read-only placeholders: they show the independent
 ## Helper
 
 `lib/commerce-policy.ts` provides a server-only fail-closed preflight check for exact user/rail/merchant/amount/expiry matching. It is not a substitute for authenticated approval storage, atomic consumption, provider authorization, or network-enforced spending controls.
+
+## Separate approval screens (UI milestone)
+
+Two isolated, intentionally non-functional approval surfaces now exist:
+
+- `/payments/crossmint` — Crossmint card approval status and requirements.
+- `/payments/stalkchain-wallet` — StalkChain agent-wallet approval status and requirements.
+
+Both pages are informational only. They do not authenticate a user, create or approve a request, invoke MCP, authorize a provider, sign a transaction, or initiate a payment. The screens explicitly show the rails as disabled. This is intentional until the next backend milestone provides verified identity, RLS-protected approval records, user-only approval mutations, atomic one-time consumption, transactional per-rail limits, and security tests.
+
+The two pages link to each other for navigation, but do not share approval state, credentials, limits, or wallet/card controls.
