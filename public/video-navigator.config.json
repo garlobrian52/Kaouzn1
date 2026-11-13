@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "title": "A recording with a little more context",
+  "video": "https://raw.githubusercontent.com/BagToad/github-video-navigator/main/public/demo/walkthrough.mp4",
+  "chapters": [
+    {
+      "time": 0,
+      "title": "Start with the recording",
+      "description": "One GitHub link brings video and context together."
+    },
+    {
+      "time": 10,
+      "title": "Give the video chapters",
+      "description": "Useful moments become jumpable."
+    },
+    {
+      "time": 20,
+      "title": "Follow the decisions",
+      "description": "Recorded notes tell what happened and why."
+    },
+    {
+      "time": 30,
+      "title": "Share the exact moment",
+      "description": "Send a link that opens where the conversation starts."
+    }
+  ],
+  "notes": [
+    {
+      "time": 0,
+      "type": "Observation",
+      "text": "The recording is only part of the story."
+    },
+    {
+      "time": 5,
+      "type": "Decision",
+      "text": "Keep the context beside the work."
+    },
+    {
+      "time": 10,
+      "type": "Action",
+      "text": "Mark useful changes of context."
+    },
+    {
+      "time": 16,
+      "type": "Result",
+      "text": "Seeking works in both directions."
+    },
+    {
+      "time": 20,
+      "type": "Observation",
+      "text": "Notes are not a transcript."
+    },
+    {
+      "time": 25,
+      "type": "Decision",
+      "text": "Leave room to read."
+    },
+    {
+      "time": 30,
+      "type": "Action",
+      "text": "Link to the moment under discussion."
+    },
+    {
+      "time": 36,
+      "type": "Result",
+      "text": "Ready for another set of eyes."
+    }
+  ]
+}
