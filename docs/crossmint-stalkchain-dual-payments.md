@@ -28,6 +28,15 @@ Copy the new variables from `.env.example` into server-side Vercel environment s
 
 The example $25 per-purchase / $50 daily / $150 monthly Crossmint caps are proposed ceilings, not proof of provider enforcement. Confirm them in the provider dashboard and on the actual payment rail before enabling.
 
+## Approval UI milestone (implemented)
+
+Two separate routes now exist:
+
+- `/approvals/crossmint` — Crossmint card/hosted-checkout approval surface.
+- `/approvals/agent-wallet` — StalkChain agent-wallet approval surface.
+
+Both screens are intentionally read-only placeholders: they show the independent rail, required safeguards, and a locked approval area. Approve/deny controls are disabled because verified end-user authentication and trusted approval storage are not present in the inspected repository. The inbox is explicitly marked not connected; no approval request is fabricated and no payment action is exposed. The home dashboard links to both screens.
+
 ## Required implementation sequence
 
 1. Establish verified user authentication and derive `userId` from the server session. Never accept identity from model arguments.
