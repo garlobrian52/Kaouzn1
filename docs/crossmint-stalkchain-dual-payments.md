@@ -28,6 +28,12 @@ Copy the new variables from `.env.example` into server-side Vercel environment s
 
 The example $25 per-purchase / $50 daily / $150 monthly Crossmint caps are proposed ceilings, not proof of provider enforcement. Confirm them in the provider dashboard and on the actual payment rail before enabling.
 
+## Authentication milestone (Clerk selected)
+
+Clerk is the selected identity provider. The app now wraps its layout in `ClerkProvider`, adds Clerk sign-in/sign-up routes, and uses `proxy.ts` with `clerkMiddleware` to protect `/approvals/*` and the future `/api/payments/*` namespace. Each approval screen also checks the Clerk server session and redirects unauthenticated visitors to sign-in. This derives identity from the verified Clerk session rather than request-body or model-supplied user IDs.
+
+Required server environment variables are `CLERK_SECRET_KEY` and `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`; configure them in the Clerk dashboard and Vercel environment settings. Set the sign-in and sign-up path variables shown in `.env.example`. Do not commit real keys. The Clerk application, production domain, allowed redirect URLs, and environment secrets still need to be configured and verified before deployment.
+
 ## Approval UI milestone (implemented)
 
 Two separate routes now exist:
