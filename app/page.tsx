@@ -55,6 +55,15 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="section">
+          <h2>Payment approvals</h2>
+          <p>Two independent approval screens. Both payment rails remain disabled until authentication, approval storage, provider controls, and security tests are complete.</p>
+          <div className="approval-nav-links">
+            <a href="/approvals/crossmint">Crossmint card approvals</a>
+            <a href="/approvals/agent-wallet">StalkChain wallet approvals</a>
+          </div>
+        </section>
+
         <section className="grid" id="dashboard">
           <div className="card"><div className="metric">$50K</div><p>Monthly revenue target</p></div>
           <div className="card"><div className="metric">$10K</div><p>Weekly target</p></div>
