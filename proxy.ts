@@ -3,12 +3,11 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 const isProtectedRoute = createRouteMatcher([
   "/approvals(.*)",
   "/api/payments(.*)",
+  "/api/elysium(.*)",
 ]);
 
 export default clerkMiddleware(async (auth, request) => {
-  if (isProtectedRoute(request)) {
-    await auth.protect();
-  }
+  if (isProtectedRoute(request)) await auth.protect();
 });
 
 export const config = {
