@@ -1,4 +1,3 @@
-import "dotenv/config";
 import { getElysiumWatchClient } from "../lib/elysium";
 
 if (process.env.ELYSIUM_MONITOR_ENABLED !== "true") throw new Error("ELYSIUM_MONITOR_ENABLED must be true in the trusted worker.");
