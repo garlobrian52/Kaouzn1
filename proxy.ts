@@ -4,6 +4,7 @@ const isProtectedRoute = createRouteMatcher([
   "/approvals(.*)",
   "/api/payments(.*)",
   "/api/elysium(.*)",
+  "/api/zora(.*)",
 ]);
 
 export default clerkMiddleware(async (auth, request) => {
