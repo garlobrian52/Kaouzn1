@@ -2,7 +2,30 @@
   "name": "ai-revenue-os",
   "private": true,
   "version": "0.1.0",
-  "scripts": {"dev":"next dev","build":"next build","start":"next start","typecheck":"tsc --noEmit","elysium:watch":"tsx scripts/elysium-watcher.ts"},
-  "dependencies": {"@ai-sdk/gateway":"latest","@supabase/ssr":"latest","@supabase/supabase-js":"latest","ai":"latest","next":"latest","react":"latest","react-dom":"latest","@clerk/nextjs":"latest","viem":"^2.38.5"},
-  "devDependencies": {"@types/node":"latest","@types/react":"latest","@types/react-dom":"latest","typescript":"latest","tsx":"^4.20.6"}
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "elysium:watch": "tsx scripts/elysium-watcher.ts",
+    "zora:watch": "tsx scripts/zora-watcher.ts"
+  },
+  "dependencies": {
+    "@ai-sdk/gateway": "latest",
+    "@supabase/ssr": "latest",
+    "@supabase/supabase-js": "latest",
+    "ai": "latest",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "@clerk/nextjs": "latest",
+    "viem": "^2.38.5"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "typescript": "latest",
+    "tsx": "^4.20.6"
+  }
 }
