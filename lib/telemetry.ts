@@ -122,3 +122,14 @@ export function emitInstatusTestSignals(): void {
   });
   counter.add(1, { "test.signal": "metrics" });
 }
+
+export function recordActiveSpanError(error: unknown): void {
+  const span = trace.getActiveSpan();
+  if (!span) return;
+  const exception = error instanceof Error ? error : new Error(String(error));
+  span.recordException(exception);
+  span.setStatus({
+    code: SpanStatusCode.ERROR,
+    message: exception.message,
+  });
+}
