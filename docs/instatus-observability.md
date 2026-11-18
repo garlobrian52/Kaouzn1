@@ -25,9 +25,10 @@ npm install
 npm run dev
 ```
 
-In a second terminal, with `INSTATUS_API_KEY` set in the app's `.env.local`, run:
+In a second terminal, enter the key into a hidden prompt so it is available to `curl` without placing it in shell history:
 
 ```bash
+read -s -p "Instatus API key: " INSTATUS_API_KEY; printf '\n'; export INSTATUS_API_KEY
 curl -i -X POST http://localhost:3000/api/observability/test \
   -H "Authorization: Bearer $INSTATUS_API_KEY"
 ```
