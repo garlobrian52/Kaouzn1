@@ -1,5 +1,4 @@
-import { logs, SeverityNumber } from "@opentelemetry/api-logs";
-import { metrics, trace } from "@opentelemetry/api";
+import { logs, metrics, SeverityNumber, trace } from "@opentelemetry/api";
 import { OTLPLogExporter } from "@opentelemetry/exporter-logs-otlp-http";
 import { OTLPMetricExporter } from "@opentelemetry/exporter-metrics-otlp-http";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
@@ -7,7 +6,7 @@ import { resourceFromAttributes } from "@opentelemetry/resources";
 import { BatchLogRecordProcessor } from "@opentelemetry/sdk-logs";
 import { PeriodicExportingMetricReader } from "@opentelemetry/sdk-metrics";
 import { NodeSDK } from "@opentelemetry/sdk-node";
-import { BatchSpanProcessor } from "@opentelemetry/sdk-trace-base";
+import { BatchSpanProcessor } from "@opentelemetry/sdk-trace";
 import { ATTR_SERVICE_NAME } from "@opentelemetry/semantic-conventions";
 import { getNodeAutoInstrumentations } from "@opentelemetry/auto-instrumentations-node";
 
@@ -50,12 +49,12 @@ export function initTelemetry(): NodeSDK | undefined {
       [ATTR_SERVICE_NAME]: SERVICE_NAME,
     }),
     spanProcessors: [
-      new BatchSpanProcessor(
-        new OTLPTraceExporter({
+      new BatchSpanProcessor({
+        exporter: new OTLPTraceExporter({
           url: "https://otel.instatus.com/v1/traces",
           headers,
         }),
-      ),
+      }),
     ],
     logRecordProcessors: [
       new BatchLogRecordProcessor({
@@ -65,13 +64,13 @@ export function initTelemetry(): NodeSDK | undefined {
         }),
       }),
     ],
-    metricReader: new PeriodicExportingMetricReader({
+    metricReaders: [new PeriodicExportingMetricReader({
       exporter: new OTLPMetricExporter({
         url: "https://otel.instatus.com/v1/metrics",
         headers,
       }),
       exportIntervalMillis: 15000,
-    }),
+    })],
     instrumentations: [
       getNodeAutoInstrumentations({
         "@opentelemetry/instrumentation-runtime-node": { enabled: true },
