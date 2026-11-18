@@ -1,4 +1,5 @@
-import { initTelemetry } from "../lib/telemetry";
+import { SeverityNumber } from "@opentelemetry/api";
+import { emitTelemetryLog, initTelemetry } from "../lib/telemetry";
 import { getElysiumWatchClient } from "../lib/elysium";
 
 initTelemetry();
@@ -8,9 +9,16 @@ if (process.env.ELYSIUM_TX_SIGNING_ENABLED === "true" || process.env.ELYSIUM_WIT
 
 const client = getElysiumWatchClient();
 console.info("[elysium] read-only watcher starting; chainId=99901");
+emitTelemetryLog("Elysium read-only watcher starting", SeverityNumber.INFO, "INFO", { "chain.id": 99901, "worker.name": "elysium-watcher" });
+
 client.watchBlocks({
   onBlock(block) {
-    console.info("[elysium] new block", { number: block.number?.toString(), hash: block.hash, transactions: block.transactions.length });
+    const attributes = { number: block.number?.toString() ?? "unknown", hash: block.hash ?? "unknown", transactions: block.transactions.length };
+    console.info("[elysium] new block", attributes);
+    emitTelemetryLog("Elysium new block", SeverityNumber.INFO, "INFO", { ...attributes, "worker.name": "elysium-watcher" });
   },
-  onError(error) { console.error("[elysium] websocket error", error.message); },
+  onError(error) {
+    console.error("[elysium] websocket error", error.message);
+    emitTelemetryLog("Elysium websocket error", SeverityNumber.ERROR, "ERROR", { "error.message": error.message, "worker.name": "elysium-watcher" });
+  },
 });
