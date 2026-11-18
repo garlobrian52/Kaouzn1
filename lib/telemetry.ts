@@ -133,3 +133,18 @@ export function recordActiveSpanError(error: unknown): void {
     message: exception.message,
   });
 }
+
+export function emitTelemetryLog(
+  body: string,
+  severityNumber: SeverityNumber,
+  severityText: string,
+  attributes: Record<string, string | number | boolean> = {},
+): void {
+  if (!sdk) return;
+  logs.getLogger(SERVICE_NAME, "1.0.0").emit({
+    body,
+    severityNumber,
+    severityText,
+    attributes,
+  });
+}
